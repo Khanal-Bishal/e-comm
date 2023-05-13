@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container
+{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right:0.75rem;
+    padding-left:0.75rem;
+}
