@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Chair from "@/assets/chair.png";
-import Icons from "@/components/Icons";
+import Icons from "@/components/UI/Icons";
 
 const FeatureChair = ({ product }) => {
   const { name, price, count } = product;

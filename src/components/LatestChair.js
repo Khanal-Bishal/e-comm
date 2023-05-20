@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Icons from "@/components/Icons";
+import Icons from "@/components/UI/Icons";
 import NoImage from "@/assets/noImage.jpg";
 
 const LatestChair = ({ product }) => {

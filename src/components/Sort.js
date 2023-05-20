@@ -1,42 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { BsFillGridFill } from "react-icons/bs";
 import { AiOutlineBars } from "react-icons/ai";
 
-const Sort = () => {
+const Sort = ({ setView }) => {
   const router = useRouter();
+  const [queryCtg, setQueryCtg] = useState("");
+  useEffect(() => {
+    setQueryCtg(router.query.per_page);
+  }, [router]);
   const perPageHandler = (event) => {
     event.preventDefault();
-    console.log(router.asPath);
+    // console.log(router.asPath);
 
-    if (router.asPath.includes("?") && !router.asPath.includes("per_page")) {
-      router.push(`${router.asPath}&per_page=${event.target.value}`);
-    } else if (
-      router.asPath.includes("?") &&
-      router.asPath.includes("per_page")
-    ) {
-      const slice = router.asPath.split("&");
+    // if (router.asPath.includes("?") && !router.asPath.includes("per_page")) {
+    //   router.push(`${router.asPath}&per_page=${event.target.value}`);
+    // } else if (
+    //   router.asPath.includes("?") &&
+    //   router.asPath.includes("per_page")
+    // ) {
+    //   const slice = router.asPath.split("&");
 
-      const sliced = slice.filter((slice) => {
-        return !slice.includes("per_page");
-      });
-      // console.log(sliced);
-      let slicedUrl = sliced[0];
-      console.log(slicedUrl);
-      sliced.forEach((slice, index) => {
-        if (index === 0) {
-        } else {
-          slicedUrl += `&${slice}`;
-        }
-      });
-      console.log(slicedUrl);
-      // console.log(slice[0]);
-      // const slicedUrl = slice[0];
-      router.push(`${slicedUrl}&per_page=${event.target.value}`);
-    } else {
-      router.push(`/products?per_page=${event.target.value}`);
-    }
+    //   const sliced = slice.filter((slice) => {
+    //     return !slice.includes("per_page");
+    //   });
+    //   // console.log(sliced);
+    //   let slicedUrl = sliced[0];
+    //   console.log(slicedUrl);
+    //   sliced.forEach((slice, index) => {
+    //     if (index === 0) {
+    //     } else {
+    //       slicedUrl += `&${slice}`;
+    //     }
+    //   });
+    //   console.log(slicedUrl);
+    //   // console.log(slice[0]);
+    //   // const slicedUrl = slice[0];
+    //   router.push(`${slicedUrl}&per_page=${event.target.value}`);
+    // } else {
+    router.push(`/products?per_page=${event.target.value}`);
   };
+
   return (
     <div className="container mt-16 flex flex-col justify-between gap-4  text-header md:flex-row md:mt-32">
       <div>
@@ -50,7 +54,7 @@ const Sort = () => {
         <div>
           Per Page:
           <form className="inline ml-2 border">
-            <select name="perpage" onChange={perPageHandler}>
+            <select name="perpage" value={queryCtg} onChange={perPageHandler}>
               <option value="3">3</option>
               <option value="5">5</option>
               <option value="10">10</option>
@@ -70,8 +74,18 @@ const Sort = () => {
         </div>
         <div className="ml-2">
           View
-          <BsFillGridFill className="inline ml-2" />
-          <AiOutlineBars className="inline ml-2" />
+          <BsFillGridFill
+            className="inline ml-2"
+            onClick={() => {
+              setView("grid");
+            }}
+          />
+          <AiOutlineBars
+            className="inline ml-2"
+            onClick={() => {
+              setView("list");
+            }}
+          />
         </div>
       </div>
     </div>

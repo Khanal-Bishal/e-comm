@@ -2,11 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.container
-{
+
+@layer components {
+    .form-control {
+        @apply bg-gray-50 border text-black text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:focus:border-blue-500;
+    }
+    .form-label
+    {
+        @apply block mb-2 text-sm font-medium text-gray-900 dark:text-black
+    }
+    .footer-list
+    {
+        @apply font-extralight my-3 text-xs hover:text-gray-400 cursor-pointer
+    }
+}
+.container {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-    padding-right:0.75rem;
-    padding-left:0.75rem;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
 }
